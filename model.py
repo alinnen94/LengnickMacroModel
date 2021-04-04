@@ -8,6 +8,7 @@ from mesa import Model
 from mesa.datacollection import DataCollector
 from mesa.time import RandomActivation
 import numpy as np
+import random
 
 # Data collector functions
 
@@ -48,4 +49,29 @@ class MacroModel(Model):
         Theta = 0.75
     ):
         self.H = H
-        
+        self.F = F
+        self.schedule = RandomActivation(self)
+        self.datacollector = DataCollector(
+            model_reporters={
+                "Number of agents": get_num_agents,
+                "Total savings": get_total_savings
+            },
+            agent_reporters={}
+        )
+        # Initialise random number generator. The same seed produces the same random number sequence
+        np.random.seed(seed)
+        HH_list = [Household]
+
+        # Create household agents for the model according to number set by user
+        for i in range(self.H):
+            # Set reservation wage, liquidity and consumption
+            w = np.random.normal(loc=1, scale=0.2)
+            m = np.random.normal(loc=1, scale=0.2)
+            c = np.random.randint(low=21, high= 105)
+
+            h = Household(i, self, w, m, c, num_typeA, alpha)
+            self.schedule.add(h)
+            HH_list.append(h)
+
+
+MacroModel()

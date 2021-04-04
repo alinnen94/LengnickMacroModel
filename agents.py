@@ -52,11 +52,10 @@ class Firm(Agent):
 
 # Househoid class
 class Household(Agent):
-    def __init__(self, id, model, w, m, c, typeB, typeA, dividend,
-                 employed, alpha, P):
+    def __init__(self, id, model, w, m, c, num_typeA, alpha):
 
         # initialise the parent class with required parameters
-        super.__init__(id, model)
+        super().__init__(id, model)
 
     def updateConsumption(self):
         self.c = 1 # math.min(self.m / self.P) * Math.exp(self.alpha), self.m / self.P
