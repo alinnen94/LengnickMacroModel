@@ -5,11 +5,9 @@ import math
 
 # Firm class
 class Firm(Agent):
-    def __init__(self, id, model, w, m, inv, inv_min, inv_max, d,
-                 p, p_min, p_max, delta, Phi_min, Phi_max, phi_min,
-                 phi_max, theta, Theta, mc, openPosition, toFire,
-                 gamma, lambda_, num_months_with_openpositions,
-                 typeB, typeA, m_buffer, dailyProduces, b):
+    def __init__(self, id, model, w, inv, inv_min, inv_max, p,
+                 p_min, p_max, delta, Phi_min, Phi_max,
+                 phi_min, phi_max, theta, lambda_, gamma, Theta):
 
         # initialise the parent class with required parameters
         super().__init__(id, model)
